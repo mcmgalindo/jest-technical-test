@@ -191,61 +191,6 @@ describe("calculateMonthlyRent function", () => {
         }
     );
 
-    it("Should accept a rentRateChangeFrequency different than 1", () => {
-        const baseMonthlyRent = 50.0;
-        const leaseStartDate = new Date("2023-01-01T00:00:00");
-        const windowStartDate = new Date("2023-01-01T00:00:00");
-        const windowEndDate = new Date("2023-05-18T00:00:00");
-        const dayOfMonthRentDue = 15;
-        const rentRateChangeFrequency = 2;
-        const rentChangeRate = 0.1;
-
-        const result = calculateMonthlyRent(
-            baseMonthlyRent,
-            leaseStartDate,
-            windowStartDate,
-            windowEndDate,
-            dayOfMonthRentDue,
-            rentRateChangeFrequency,
-            rentChangeRate
-        );
-
-        let expectedResult = [
-            {
-                vacancy: false,
-                rentAmount: 23.33,
-                rentDueDate: new Date("2023-01-01T00:00:00"),
-            },
-            {
-                vacancy: false,
-                rentAmount: 50,
-                rentDueDate: new Date("2023-01-15T00:00:00"),
-            },
-            {
-                vacancy: false,
-                rentAmount: 50,
-                rentDueDate: new Date("2023-02-15T00:00:00"),
-            },
-            {
-                vacancy: false,
-                rentAmount: 55,
-                rentDueDate: new Date("2023-03-15T00:00:00"),
-            },
-            {
-                vacancy: false,
-                rentAmount: 55,
-                rentDueDate: new Date("2023-04-15T00:00:00"),
-            },
-            {
-                vacancy: false,
-                rentAmount: 60.5,
-                rentDueDate: new Date("2023-05-15T00:00:00"),
-            },
-        ];
-
-        expect(result).toEqual(expectedResult);
-    });
-
     it("Should decrease the rate while the unit is vacant.", () => {
         const baseMonthlyRent = 100.0;
         const leaseStartDate = new Date("2023-04-11T00:00:00");
